@@ -348,18 +348,26 @@ nautilus_application_open_location_full (NautilusApplication *self,
 
     if (target_window == NULL && (flags & NAUTILUS_OPEN_FLAG_NEW_WINDOW) == 0)
     {
-        /* Reuse active window */
-        target_window = active_window;
+				if (g_settings_get_boolean (nautilus_preferences, "legacy-open-behavior"))
+				{
+            if ((flags & NAUTILUS_OPEN_FLAG_REUSE_EXISTING) == 0)
+            {
+                target_window = active_window;
+            }
+				} else {
+					/* Reuse active window */
+					target_window = active_window;
 
-        if (target_window == NULL)
-        {
-            target_window = self->last_active_window;
-        }
+					if (target_window == NULL)
+					{
+							target_window = self->last_active_window;
+					}
 
-        if (target_window == NULL && self->windows != NULL)
-        {
-            target_window = self->windows->data;
-        }
+					if (target_window == NULL && self->windows != NULL)
+					{
+							target_window = self->windows->data;
+					}
+				}
     }
 
     if (target_window == NULL)

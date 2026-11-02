@@ -178,6 +178,11 @@
       <summary>How to display file timestamps in the views</summary>
       <description>If set to 'simple', Files will show Today and Yesterday with time, otherwise the exact date without time. If set to 'detailed', it will always show the exact date and time.</description>
     </key>
+		<key name="legacy-open-behavior" type="b">
+			<default>false</default>
+			<summary>Use the Files 50 window opening behavior</summary>
+			<description>If set to true, Files will follow v50 behavior and open a new window instead of a tab.</description>
+		</key>
   </schema>
 
   <schema path="/org/gnome/nautilus/compression/" id="org.gnome.nautilus.compression" gettext-domain="nautilus">
